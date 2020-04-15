@@ -119,7 +119,7 @@ _<br />_
 - 潜力
 基础能力越劳，潜力就越大，上升空间就越多
 - 职业规划（在于自己）
-制定目标，善于行动
+制定目标，善于行动<br />
 可以关注前端早早聊
 
 ## 优秀工程师的直接体现——成就
@@ -209,33 +209,34 @@ _<br />_
 1. 数据统计
 发布次数、单元测试次数等
 ## 持续集成
-客户端软件的持续集成
-daily build
-团队每个人开发自己的模块，每天留点时间做一次整体集成
-BVT
+客户端软件的持续集成<br />
+daily build<br />
+团队每个人开发自己的模块，每天留点时间做一次整体集成<br />
+BVT<br />
 
 
-前端持续集成
-Check-in build
-每次提交一次代码都build一次
-Lint + Rule Check
-规则检查
+前端持续集成<br />
+Check-in build<br />
+每次提交一次代码都build一次<br />
+Lint + Rule Check<br />
+规则检查<br />
 
 
 ## 技术架构
-客户端架构： 解决软件需求规模带来的复杂性
-服务端架构： 解决大象用户访问带来的复杂性
-前端架构：解决大量页面需求带来的重复劳动问题（提高复用率）
+客户端架构： 解决软件需求规模带来的复杂性<br />
+服务端架构： 解决大象用户访问带来的复杂性<br />
+前端架构：解决大量页面需求带来的重复劳动问题（提高复用率）<br />
+
 ### 如何提高复用率
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/412491/1586706159178-7d72e7b7-07bc-47a9-95cd-79e73bf4196c.png#align=left&display=inline&height=299&margin=%5Bobject%20Object%5D&name=image.png&originHeight=598&originWidth=1056&size=206068&status=done&style=none&width=528)
 
 1. 库：有复用价值的代码
-URL：IETF标准官方文档 [https://tools.ietf.org/](https://tools.ietf.org/)
-AJAX：
-ENV：
+URL：[IETF标准官方文档](https://tools.ietf.org/)<br />
+AJAX<br />
+ENV<br />
 1. 组件：UI上多次出现的元素
-轮播
-Tab
+轮播<br />
+Tab<br />
 1. 模块：经常被使用的业务区块
 登录
 
