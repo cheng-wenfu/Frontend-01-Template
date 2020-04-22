@@ -1,0 +1,46 @@
+<script>
+    function UTF8_encode(str) {
+        const str0Arr = ["", "0", "00", "000", "0000", "00000", "000000", "0000000"]
+        let codeAt = str.charCodeAt()
+        let code_Bin = codeAt.toString(2);
+        let strBits, strEncode;
+        if (codeAt < 0o177) {
+            strBits = str0Arr[8 - code_Bin.length] + code_Bin;
+            strEncode = strBits;
+        }
+        else if (codeAt >= 0o200 && codeAt < 0o3777) {
+            strBits = str0Arr[11 - code_Bin.length] + code_Bin;
+            strEncode = strBits.replace(/([01]{5})([01]{6})/, "110$1 10$2");
+        }
+        else if (codeAt >= 0o4000 && codeAt < 0o77777) {
+            strBits = str0Arr[16 - code_Bin.length] + code_Bin;
+            strEncode = strBits.replace(/([01]{4})([01]{6})([01]{6})/, "1110$1 10$2 10$3");
+        }
+        else if (codeAt >= 0o100000 && codeAt < 0o177777) {
+            strBits = str0Arr[16 - code_Bin.length] + code_Bin;
+            strEncode = strBits.replace(/([01]{4})([01]{6})([01]{6})/, "1110$1 10$2 10$3");
+        }
+        else if (codeAt >= 0o200000 && codeAt < 0o4177777) {
+            strBits = str0Arr[21 - code_Bin.length] + code_Bin;
+            strEncode = strBits.replace(/([01]{3})([01]{6})([01]{6})([01]{6})/, "11110$1 10$2 10$3 10$4");
+        }
+        else {
+            return;
+        }
+        const buffer2String = strEncode.split(" "); //二进制显示，数组
+        const buffer = [];
+        buffer2String.forEach(value => {
+            buffer.push(parseInt(value, 2).toString(16))
+        })
+        return buffer;
+    }
+
+    const str = "\u0024\u00a2\u0939\u20ac\ud55c";
+    let strBuffer = [];
+    let buffer;
+    for(let i = 0; i < str.length; i++) {
+        buffer = UTF8_encode(str[i]);
+        strBuffer = [...strBuffer, ...buffer];
+    }
+    console.log(strBuffer)
+</script>
