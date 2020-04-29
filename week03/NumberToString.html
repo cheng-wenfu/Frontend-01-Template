@@ -1,0 +1,16 @@
+<script>
+    function converNumberToString(number, x = 10) {
+        let i = 0;
+        var str = '';
+        while((number % 1) !== 0) {
+            number *= x;
+            i++;
+        }
+        while(number > 1) {
+            str = number % x + str;
+            number = Math.floor(number / x);
+        }
+        return str.slice(0, str.length - i) + "." + str.slice(str.length - i)
+    }
+   console.log(converNumberToString(99.9999999))
+</script>
