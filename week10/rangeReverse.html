@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>使用 Range API 翻转节点</title>
+</head>
+
+<body>
+  <div id="app">
+    <span>1</span>
+    <p>2</p>
+    <a>3</a>
+    <div>4</div>
+  </div>
+  <script>
+    //只发生两次重排
+    var div1 = document.getElementById("app")
+    function reverseChild(element) {
+      let range = new Range();
+      range.selectNodeContents(element);
+      let fragment = range.extractContents();//fragment 不会有重排操作，真实DOM操作
+      var l = fragment.childNodes.length;
+
+      while(l-- > 0) {
+        fragment.appendChild(fragment.childNodes[l])
+      }
+      element.appendChild(fragment);
+    }
+    reverseChild(div1) //真实DOM操作
+  </script>
+</body>
+
+</html>
