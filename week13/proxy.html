@@ -1,0 +1,104 @@
+<input id="test">
+<input id="r" type="range" min=0 max=255>
+<input id="g" type="range" min=0 max=255>
+<input id="b" type="range" min=0 max=255>
+<div id="div1" style="width: 100px; height: 100px;"></div>
+
+<script>
+  let handlers = new Map();
+
+  let reactivities = new Map();
+
+  let useReactivities = [];
+
+  function reactive(obj) {
+    if (reactivities.has(obj)) {
+      return reactivities.get(obj)
+    }
+
+    let proxy = new Proxy(obj, {
+      get(obj, prop) {
+        useReactivities.push([obj, prop])
+        return obj[prop];
+      },
+      set(obj, prop, val) {
+        obj[prop] = val
+        if(handlers.get(obj)) {
+          if(handlers.get(obj).get(prop)) {
+            for(let handler of handlers.get(obj).get(prop)) {
+              handler();
+            }
+          }
+        }
+        return obj[prop];
+      }
+    })
+
+    reactivities.set(obj, proxy);
+    reactivities.set(proxy, proxy);
+
+    return proxy;
+  }
+    
+
+
+  function effect(handler) {
+    useReactivities = [];
+    handler();
+    for(let useReactivity of useReactivities) {
+      let [obj, prop] = useReactivity
+      if(!handlers.has(obj)) {
+        handlers.set(obj, new Map())
+      }
+
+      if(!handlers.get(obj).has(prop)) {
+        handlers.get(obj).set(prop, [])
+      }
+
+      handlers.get(obj).get(prop).push(handler)
+    }
+    // handlers.push(handler)
+  }
+
+  let dummy;
+
+  let proxy1 = reactive({a: 3});
+  effect(() => dummy = proxy1.a);
+  console.log(dummy)
+  proxy1.a = 4;
+  console.log(dummy)
+
+  let v12, v2, v3;
+  let proxy2 = reactive({a: 3});
+  let proxy3 = reactive({a: 4});
+  effect(() => proxy2.a + proxy3.a)
+  effect(() => v2 = proxy2.a)
+  effect(() => v3 = proxy3.a)
+  proxy2.a = 5;
+
+
+  let p = reactive({r: 100});
+  let color = reactive({r:0, g: 0, b: 0})
+
+  effect(() => {
+    document.getElementById("test").value = p.r;
+  })
+
+  document.getElementById("test").addEventListener("input", () => {
+    p.r = event.target.value
+  })
+
+  document.getElementById("r").addEventListener("input", () => {
+    color.r = event.target.value
+  })
+  document.getElementById("g").addEventListener("input", () => {
+    color.g = event.target.value
+  })
+  document.getElementById("b").addEventListener("input", () => {
+    color.b = event.target.value
+  })
+  effect(() => {
+    document.getElementById("div1").style.backgroundColor = `rgb(${color.r},${color.g},${color.b}`;
+  })
+  
+</script>
