@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <hea>
+    <meta charset="utf-8">
+    <title>JS 事件</title>
+  </hea>
+  <body>
+    <div id="a" style="width: 100%; height: 300px;background-color: antiquewhite;">
+      a
+      <div id="b" style="width: 100%; height: 200px;background-color: burlywood;">
+        b
+        <div id="c" style="width: 100%; height: 100px;background-color: cornflowerblue;">
+          c
+        </div>
+      </div>
+    </div>
+    <script>
+      var a = document.getElementById('a')
+      var b = document.getElementById('b')
+      var c = document.getElementById('c')
+      window.addEventListener('click', () => {console.log('window 捕获')}, true)
+      a.addEventListener('click', () => {console.log("冒泡a")})
+      b.addEventListener('click', () => {console.log('冒泡b')})
+      c.addEventListener('click', () => {console.log("捕获c")}, true)
+      c.addEventListener('click', () => {console.log("冒泡c")})
+      a.addEventListener('click', () => {console.log("捕获a")}, true)
+      b.addEventListener('click', () => {console.log('捕获b')}, true)
+    </script>
+  </body>
+</html>

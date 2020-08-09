@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>测试原生JS的事件委托</title>
+<style>
+html{margin:0px;}
+body{
+    padding:5%;
+    margin:0px;
+}
+ul,li{
+    list-style:none;
+    padding:0px;
+    margin:0px;
+}
+
+.wrapper{
+    overflow:hidden;
+    line-height:28px;
+}
+
+.item{
+    border-top:1px solid #ababab;
+}
+
+
+</style>
+</head>
+<body>
+    <h1>原生JS测试事件委托</h1>
+    <ul class = "wrapper" id = "wrapper"></ul>
+</body>
+<script>
+    var len = 10,
+    html = "",
+    i = 0,
+    wrapper = document.getElementById("wrapper"),
+    body = document.body;
+    
+    for(i;i<len;i++){
+        html += '<li class = "item click'+i+'"><div><div><div><div><div><div>被绑定事件的元素</div></div></div></div></div></div></li>';
+    }
+
+wrapper.innerHTML = html;
+
+
+function _addEvent(obj,type,fn){
+    obj.addEventListener(type,fn,false);
+}
+
+function _delegate(obj,className,fn){
+    var dc = " "+className+ " ";
+    function cb(e){
+        var target = e.target,
+        c = "";
+        
+        while(target != obj){
+            c = " "+target.getAttribute("class")+" ";
+            if(c.indexOf(dc) != -1){
+                fn.call(target,e);
+            }
+            target = target.parentNode;
+        }
+    }
+    _addEvent(obj,"click",cb);
+}
+
+function _cb(){
+    console.log("click item");
+}
+//给wrapper下的所以class中包含item的元素，添加一个事件
+_delegate(wrapper,"item",_cb);
+
+
+</script>
+</html>

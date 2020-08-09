@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>flex 布局</title>
+  </head>
+  <body>
+    <div style="display: flex; background-color: pink;">
+      <div style="width: 100px; height: 100px; background-color: yellowgreen; margin: 20px;">flex-item</div>
+      <div style="width: 100px; height: 100px; background-color: yellowgreen; margin: 20px;">flex-item</div>
+      <div style="width: 100px; height: 100px; background-color: yellowgreen; margin: 20px;">flex-item</div>
+      <div style="background-color: yellowgreen; margin: 20px;">
+        本身是一个 flex item，但是内部是正常流，会发生，margin折叠
+        <div style="width: 100px; height: 100px; background-color: blue; margin: 20px;">1</div>
+        <div style="width: 100px; height: 100px; background-color: blue; margin: 20px;">2</div>
+        <div style="width: 100px; height: 100px; background-color: blue; margin: 20px;">3</div>
+      </div>
+    </div>
+  </body>
+</html>

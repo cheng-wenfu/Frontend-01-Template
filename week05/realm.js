@@ -67,11 +67,11 @@ while (queue.length) {
     if(set.has(current)) {
         continue;
     }
-    set.add(current.property)
+    set.add(current.object.property)
 
     for (let p of Object.getOwnPropertyNames(current.object)) {
         var property = Object.getOwnPropertyDescriptor(current.object, p);
-
+        
         if(property.hasOwnProperty("value") && 
         ((property.value != null) && (typeof property.value == "object") || (typeof property.value == "object")) 
         && property.value instanceof Object){

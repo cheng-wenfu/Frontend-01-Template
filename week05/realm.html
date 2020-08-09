@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Realm 可视化</title>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-{3.4.8}/dist/g6.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        const globalObjects = [
+            "eval",
+            "isFinite",
+            "isNaN",
+            "parseFloat",
+            "parseInt",
+            "decodeURI",
+            "decodeURIComponent",
+            "encodeURI",
+            "encodeURIComponent",
+
+            "Array",
+            "Date",
+            "RegExp",
+            "Promise",
+            "Proxy",
+            "Map",
+            "WeakMap",
+            "Set",
+            "WeakSet",
+            "Function",
+            "Boolean",
+            "String",
+            "Number",
+            "Symbol",
+            "Object",
+            "Error",
+            "EvalError",
+            "RangeError",
+            "ReferenceError",
+            "SyntaxError",
+            "TypeError",
+            "URIError",
+            "ArrayBuffer",
+            "SharedArrayBuffer",
+            "DataView",
+            "Float32Array",
+            "Float64Array",
+            "Int8Array",
+            "Int16Array",
+            "Int32Array",
+            "Uint8Array",
+            "Uint16Array",
+            "Uint32Array",
+            "Uint8ClampedArray",
+
+            "Atomics",
+            "JSON",
+            "Math",
+            "Reflect",
+        ];
+        function isObject(target) {
+            return (target !== null) && (typeof target === "function" || typeof target === "object")
+        }
+        const set = new Set();
+        function getObjectProperties(target, prefix = "global") {
+            if(set.has(target) || )
+        }
+
+    </script>
+</body>
+
+</html>

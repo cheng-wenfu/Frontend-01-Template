@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>事件代理</title>
+  </head>
+  <body>
+    <ul id="item-list">
+      <li>item1</li>
+      <li>item2</li>
+      <li>item3</li>
+      <li>item4</li>
+    </ul>
+    <script>
+      var items = document.getElementById('item-list');
+//事件捕获实现事件代理
+items.addEventListener('click', (e) => {console.log('捕获：click ',e.target.innerHTML)}, true);
+//事件冒泡实现事件代理
+items.addEventListener('click', (e) => {console.log('冒泡：click ',e.target.innerHTML)}, false);
+    </script>
+  </body>
+</html>
